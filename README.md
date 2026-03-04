@@ -50,20 +50,3 @@ Key training configuration:
 
 ---
 
-# Running the Model
-
-Load Stable Diffusion and apply the trained LoRA weights:
-
-```python
-from diffusers import StableDiffusionPipeline
-import torch
-
-pipe = StableDiffusionPipeline.from_pretrained(
-    "runwayml/stable-diffusion-v1-5",
-    torch_dtype=torch.float16
-).to("cuda")
-
-pipe.load_lora_weights("./lora_weights")
-
-image = pipe("a stylish streetwear outfit").images[0]
-image
